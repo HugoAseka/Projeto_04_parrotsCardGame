@@ -16,8 +16,8 @@ header {
     font-size: 30px;
 }
 img {
-    width: 80px;
-    height:160px;
+    width: 100px;
+    height:auto;
     padding: 30px 30px;
 
 }
@@ -38,6 +38,7 @@ ul {
     height: 200px;
     position: relative;
     margin: 20px;
+    object-fit: cover ;
   }
 
 .face {
@@ -59,10 +60,16 @@ ul {
     transform: rotateY(180deg);
   }
 
-  .card:active .back-face {
+
+  .clickedFront{
+    transform: rotateY(-180deg);
+  }
+  .clickedBack{ 
     transform: rotateY(0deg);
   }
-
-  .card:active .front-face {
+  .matchFront{
     transform: rotateY(-180deg);
+  }
+  .matchBack{ 
+    transform: rotateY(0deg);
   }
