@@ -62,7 +62,7 @@ let marcadorCartas = 0;
 function turnCard(elemento){
     let cartaViradaBack = document.querySelector(".clickedBack");
     let cartaViradaFront = document.querySelector(".clickedFront")
-    
+    let timer = 1000;
     
     if(marcadorCartas === 1 ){
         elemento.querySelector(".front-face").classList.add("clickedFront");
@@ -75,6 +75,7 @@ function turnCard(elemento){
             cartaViradaFront.classList.add("matchFront");
             cartaViradaBack.classList.add("matchBack");
             matches++;
+            timer = 0;
         }
         setTimeout( function(){
             elemento.querySelector(".front-face").classList.remove("clickedFront");
@@ -83,7 +84,7 @@ function turnCard(elemento){
             document.querySelector(".clickedFront").classList.remove("clickedFront");
             marcadorCartas = 0;
             console.log(marcadorCartas);
-        }, 1000);   
+        }, timer);   
     }
 
     if (marcadorCartas === 0 ){
