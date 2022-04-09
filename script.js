@@ -1,9 +1,23 @@
 
 
-const numCartas = prompt("Quantas Cartas?");
+let numCartas = prompt("Quantas Cartas?");
 while ( numCartas%2 !== 0 || numCartas < 4 || numCartas > 14 ){
     numCartas = prompt ("Número inválido. Insira número par entre 4 e 14.")
 }
+
+let relogio = document.querySelector(".relogio");
+let segundos = 0;
+const idRelogio = setInterval(function() {
+    segundos++;
+    relogio.innerHTML = segundos + " s";
+}, 1000)
+
+
+
+
+
+
+
 const midiaCartas = [
     "midia/bobrossparrot.gif",
     "midia/explodyparrot.gif",
@@ -44,12 +58,13 @@ for ( index = 0 ; index < numCartas ; index++ ){
 }
 let jogadas = 0;
 let matches = 0;
+let marcadorCartas = 0;
 function turnCard(elemento){
     let cartaViradaBack = document.querySelector(".clickedBack");
     let cartaViradaFront = document.querySelector(".clickedFront")
     elemento.querySelector(".front-face").classList.add("clickedFront");
     elemento.querySelector(".back-face").classList.add("clickedBack");
-
+    marcadorCartas++;
     if(cartaViradaBack !== null){
         if (elemento.querySelector(".back-face").innerHTML === cartaViradaBack.innerHTML){
             elemento.querySelector(".front-face").classList.add("matchFront");
@@ -69,7 +84,12 @@ function turnCard(elemento){
     jogadas++;
 
     if ( matches === numCartas/2){
-        alert("Você ganhou em "+jogadas+ " jogadas!")
+        setTimeout(function(){
+            alert(`Você ganhou em ${jogadas} jogadas e ${segundos} segundos!!`);
+            let recomecar = prompt("Gostaria de recomeçar sim ou não?");
+            if (recomecar === "sim"){window.location.reload();} else{alert("obrigado por jogar")};
+            
+        },100)
     }
 
 }
