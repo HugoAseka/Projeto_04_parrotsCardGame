@@ -62,10 +62,13 @@ let marcadorCartas = 0;
 function turnCard(elemento){
     let cartaViradaBack = document.querySelector(".clickedBack");
     let cartaViradaFront = document.querySelector(".clickedFront")
-    elemento.querySelector(".front-face").classList.add("clickedFront");
-    elemento.querySelector(".back-face").classList.add("clickedBack");
-    marcadorCartas++;
-    if(cartaViradaBack !== null){
+    
+    
+    if(marcadorCartas === 1 ){
+        elemento.querySelector(".front-face").classList.add("clickedFront");
+        elemento.querySelector(".back-face").classList.add("clickedBack");
+        marcadorCartas = 2;
+        jogadas++;
         if (elemento.querySelector(".back-face").innerHTML === cartaViradaBack.innerHTML){
             elemento.querySelector(".front-face").classList.add("matchFront");
             elemento.querySelector(".back-face").classList.add("matchBack");
@@ -78,22 +81,38 @@ function turnCard(elemento){
             elemento.querySelector(".clickedBack").classList.remove("clickedBack");
             document.querySelector(".clickedBack").classList.remove("clickedBack");
             document.querySelector(".clickedFront").classList.remove("clickedFront");
-        }, 1000);
-        
+            marcadorCartas = 0;
+            console.log(marcadorCartas);
+        }, 1000);   
     }
-    jogadas++;
+
+    if (marcadorCartas === 0 ){
+        elemento.querySelector(".front-face").classList.add("clickedFront");
+        elemento.querySelector(".back-face").classList.add("clickedBack");
+        marcadorCartas = 1;
+        jogadas++;
+    }
+
+    
 
     if ( matches === numCartas/2){
-        setTimeout(function(){
-            alert(`Você ganhou em ${jogadas} jogadas e ${segundos} segundos!!`);
-            let recomecar = prompt("Gostaria de recomeçar sim ou não?");
-            if (recomecar === "sim"){window.location.reload();} else{alert("obrigado por jogar")};
-            
-        },100)
+        setTimeout(novoJogo,100)
     }
 
 }
-
+function   novoJogo(){
+    alert(`Você ganhou em ${jogadas} jogadas e ${segundos} segundos!!`);
+    let recomecar = prompt("Gostaria de recomeçar sim ou não?");
+    if (recomecar === "sim"){
+        window.location.reload();
+    } else if (recomecar === "não"){
+        alert("obrigado por jogar");
+        clearInterval(idRelogio);
+    }else{
+        alert("obrigado por jogar");
+        clearInterval(idRelogio);
+    }
+}
 
 
 
