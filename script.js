@@ -19,12 +19,12 @@ const idRelogio = setInterval(function() {
 
 
 const midiaCartas = [
-    "midia/bobrossparrot.gif",
-    "midia/explodyparrot.gif",
-    "midia/fiestaparrot.gif",
-    "midia/metalparrot.gif",
-    "midia/revertitparrot.gif",
-    "midia/tripletsparrot.gif",
+    "midia/bobrossparrot.gif"  ,
+    "midia/explodyparrot.gif"  ,
+    "midia/fiestaparrot.gif"   ,
+    "midia/metalparrot.gif"    ,
+    "midia/revertitparrot.gif" ,
+    "midia/tripletsparrot.gif" ,
     "midia/unicornparrot.gif"
 ];
 const midiaEscolhida = [];
@@ -97,20 +97,20 @@ function turnCard(elemento){
     
 
     if ( matches === numCartas/2){
-        setTimeout(novoJogo,100)
+        setTimeout(novoJogo,50)
     }
 
 }
 function   novoJogo(){
     alert(`Você ganhou em ${jogadas} jogadas e ${segundos} segundos!!`);
     let recomecar = prompt("Gostaria de recomeçar sim ou não?");
+    while (recomecar !== "sim" && recomecar !== "não"){
+        recomecar = prompt("Insira 'sim' ou 'não' somente.");
+    }
     if (recomecar === "sim"){
         window.location.reload();
-    } else if (recomecar === "não"){
-        alert("obrigado por jogar");
-        clearInterval(idRelogio);
-    }else{
-        alert("obrigado por jogar");
+    } else{
+        alert("Obrigado por jogar!");
         clearInterval(idRelogio);
     }
 }
